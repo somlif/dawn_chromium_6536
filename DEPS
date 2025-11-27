@@ -9,10 +9,10 @@ gclient_gn_args = [
 git_dependencies = 'SYNC'
 
 vars = {
-  'chromium_git': 'https://chromium.googlesource.com',
-  'dawn_git': 'https://dawn.googlesource.com',
+  'chromium_git': 'https://github.com/chromium/chromium',
+  'dawn_git': 'https://github.com/google/dawn',
   'github_git': 'https://github.com',
-  'swiftshader_git': 'https://swiftshader.googlesource.com',
+  'swiftshader_git': 'https://github.com/google/swiftshader',
 
   'dawn_standalone': True,
   'dawn_node': False, # Also fetches dependencies required for building NodeJS bindings.
