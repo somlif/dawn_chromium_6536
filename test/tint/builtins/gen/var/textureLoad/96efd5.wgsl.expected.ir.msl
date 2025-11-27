@@ -1,0 +1,33 @@
+#include <metal_stdlib>
+using namespace metal;
+struct tint_module_vars_struct {
+  texture2d_array<float, access::sample> arg_0;
+  device float4* prevent_dce;
+};
+struct vertex_main_outputs {
+  float4 tint_symbol [[position]];
+};
+
+void textureLoad_96efd5(tint_module_vars_struct tint_module_vars) {
+  uint2 arg_1 = uint2(1u);
+  uint arg_2 = 1u;
+  uint arg_3 = 1u;
+  float4 res = tint_module_vars.arg_0.read(arg_1, arg_2, arg_3);
+  (*tint_module_vars.prevent_dce) = res;
+}
+float4 vertex_main_inner(tint_module_vars_struct tint_module_vars) {
+  textureLoad_96efd5(tint_module_vars);
+  return float4(0.0f);
+}
+fragment void fragment_main(texture2d_array<float, access::sample> arg_0 [[texture(0)]], device float4* prevent_dce [[buffer(0)]]) {
+  tint_module_vars_struct const tint_module_vars = tint_module_vars_struct{.arg_0=arg_0, .prevent_dce=prevent_dce};
+  textureLoad_96efd5(tint_module_vars);
+}
+kernel void compute_main(texture2d_array<float, access::sample> arg_0 [[texture(0)]], device float4* prevent_dce [[buffer(0)]]) {
+  tint_module_vars_struct const tint_module_vars = tint_module_vars_struct{.arg_0=arg_0, .prevent_dce=prevent_dce};
+  textureLoad_96efd5(tint_module_vars);
+}
+vertex vertex_main_outputs vertex_main(texture2d_array<float, access::sample> arg_0 [[texture(0)]], device float4* prevent_dce [[buffer(0)]]) {
+  tint_module_vars_struct const tint_module_vars = tint_module_vars_struct{.arg_0=arg_0, .prevent_dce=prevent_dce};
+  return vertex_main_outputs{.tint_symbol=vertex_main_inner(tint_module_vars)};
+}

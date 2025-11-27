@@ -1,0 +1,32 @@
+#include <metal_stdlib>
+using namespace metal;
+struct tint_module_vars_struct {
+  texture3d<uint, access::read_write> arg_0;
+  device uint3* prevent_dce;
+};
+struct vertex_main_outputs {
+  float4 tint_symbol [[position]];
+};
+
+void textureDimensions_8b9906(tint_module_vars_struct tint_module_vars) {
+  uint const v = tint_module_vars.arg_0.get_width(0u);
+  uint const v_1 = tint_module_vars.arg_0.get_height(0u);
+  uint3 res = uint3(v, v_1, tint_module_vars.arg_0.get_depth(0u));
+  (*tint_module_vars.prevent_dce) = res;
+}
+float4 vertex_main_inner(tint_module_vars_struct tint_module_vars) {
+  textureDimensions_8b9906(tint_module_vars);
+  return float4(0.0f);
+}
+fragment void fragment_main(texture3d<uint, access::read_write> arg_0 [[texture(0)]], device uint3* prevent_dce [[buffer(0)]]) {
+  tint_module_vars_struct const tint_module_vars = tint_module_vars_struct{.arg_0=arg_0, .prevent_dce=prevent_dce};
+  textureDimensions_8b9906(tint_module_vars);
+}
+kernel void compute_main(texture3d<uint, access::read_write> arg_0 [[texture(0)]], device uint3* prevent_dce [[buffer(0)]]) {
+  tint_module_vars_struct const tint_module_vars = tint_module_vars_struct{.arg_0=arg_0, .prevent_dce=prevent_dce};
+  textureDimensions_8b9906(tint_module_vars);
+}
+vertex vertex_main_outputs vertex_main(texture3d<uint, access::read_write> arg_0 [[texture(0)]], device uint3* prevent_dce [[buffer(0)]]) {
+  tint_module_vars_struct const tint_module_vars = tint_module_vars_struct{.arg_0=arg_0, .prevent_dce=prevent_dce};
+  return vertex_main_outputs{.tint_symbol=vertex_main_inner(tint_module_vars)};
+}
